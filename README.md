@@ -15,6 +15,10 @@ This project is a setup for practical FastAPI backend development with productio
 * **RBAC** – Role-Based Access Control
 * **Passlib (bcrypt)** – Secure password hashing
 * **CORS Middleware** – Frontend communication support
+* **Middleware** – Request logging and timing
+* **Background Tasks** – Asynchronous processing
+* **Custom Documentation** – Custom documentation for API
+* **API Versioning** – API versioning
 * **FastAPI Dependency Injection** – Modular and testable design
 
 ## Core Features

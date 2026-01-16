@@ -21,8 +21,8 @@ if config.config_file_name is not None:
 from sqlmodel import SQLModel
 
 # import ALL models so metadata is registered
-from models.user import User   # add more models if you have them
-# from models.todo import Todo
+
+from models import User, Notification
 
 target_metadata = SQLModel.metadata
 

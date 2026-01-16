@@ -3,7 +3,9 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlmodel import Session
 from db.session import get_session
 from services.auth_service import AuthService
-from models.user import UserCreate
+from models.user import User, UserCreate
+from core.dependencies import get_current_user
+from repositories.notification_repo import NotificationRepo
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -45,3 +47,11 @@ def register(
         "message": "User registered successfully",
         "user": user,
     }
+
+@router.get("/me")
+def my_notifications(
+    session: Session = Depends(get_session),
+    current_user: User = Depends(get_current_user)
+):
+    repo = NotificationRepo(session)
+    return repo.get_for_user(current_user.id)
