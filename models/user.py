@@ -1,13 +1,21 @@
 from sqlmodel import SQLModel, Field
 from typing import Optional
 
-class User(SQLModel):
+class User(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    name: str = Field(min_length=3, max_length=50)
     email: str = Field(index=True, unique=True)
-    password: str = Field(min_length=6)
+    hashed_password: str
     role: str = Field(default="user")
 
-class UserResponse(SQLModel):
-    name: str 
+class UserCreate(SQLModel):
     email: str
+    password: str
+
+class UserResponse(SQLModel):
+    id: int
+    email: str
+    role: str
+
+class UserUpdate(SQLModel):
+    email: Optional[str] = None
+    role: Optional[str] = None
